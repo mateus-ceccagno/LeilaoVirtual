@@ -1,0 +1,31 @@
+SUGESTÃO DE FLUXO PARA EXECUTAR NA APLICAÇÃO
+
+
+--- Criação de entidades básicas na aplicação ---
+
+-> No console Servidor, crie leilões:
+criarLeilao/Banco Corcel 2/500/10/180
+criarLeilao/5 Jukebox Recuperadas pela PRF/10790/10/60
+criarLeilao/Veloster 3(três) portas/90000/10/3600
+
+-> No console Cliente, crie participantes:
+conta/criar/Ana
+conta/criar/Basilio Milho
+conta/criar/Carlos
+conta/criar/Dario
+
+
+--- Enunciado da Avaliação II ---
+
+"1. Requisição de entrada no leilão (cliente envia a sua chave pública ao servidor).
+    1.1 Comunicação unicast em texto claro."
+        conta/entrar/1/C:\chaves\chavesPublicas\Basilio Milho
+        breakpoint em IProcoloRMI.solicitarEntrada
+
+"2. Resposta da requisição de entrada no leilão (servidor envia ao cliente o endereço do grupo 
+multicast do leilão e a chave simétrica a ser utilizadas).
+    2.1 comunicação unicast cifrada utilizando-se a chave pública do cliente."
+        breakpoint em IProcoloRMI.solicitarEnderecoMulticast e IProcoloRMI.solicitarChaveAES
+
+"3. Dados sobre os lances do leilão.
+    3.1 Comunicação multicast cifrada utilizando-se a chave simétrica"
