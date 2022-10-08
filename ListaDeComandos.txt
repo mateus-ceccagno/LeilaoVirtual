@@ -1,31 +1,26 @@
 SUGESTÃO DE FLUXO PARA EXECUTAR NA APLICAÇÃO
 
+Sequência para rodar projetos:
+1. LeilaoServidorMulticast
+2. LeilaoServidorUnicast
+3. LeilaoClienteUnicast
+4. LeilaoClienteMulticas
 
 --- Criação de entidades básicas na aplicação ---
+-> Projeto LeilaoServidorMulticast, no form:
+Crie um leilão e inicie
 
--> No console Servidor, crie leilões:
-criarLeilao/Banco Corcel 2/500/10/180
-criarLeilao/5 Jukebox Recuperadas pela PRF/10790/10/60
-criarLeilao/Veloster 3(três) portas/90000/10/3600
+-> Projeto LeilaoServidorUnicast:
+Execute
 
--> No console Cliente, crie participantes:
+-> Projeto LeilaoClienteUnicast, no console:
 conta/criar/Ana
-conta/criar/Basilio Milho
+conta/criar/Basilio
 conta/criar/Carlos
 conta/criar/Dario
+conta/entrar/Basilio/C:\chaves\chavesPublicas\Basilio
 
-
---- Enunciado da Avaliação II ---
-
-"1. Requisição de entrada no leilão (cliente envia a sua chave pública ao servidor).
-    1.1 Comunicação unicast em texto claro."
-        conta/entrar/1/C:\chaves\chavesPublicas\Basilio Milho
-        breakpoint em IProcoloRMI.solicitarEntrada
-
-"2. Resposta da requisição de entrada no leilão (servidor envia ao cliente o endereço do grupo 
-multicast do leilão e a chave simétrica a ser utilizadas).
-    2.1 comunicação unicast cifrada utilizando-se a chave pública do cliente."
-        breakpoint em IProcoloRMI.solicitarEnderecoMulticast e IProcoloRMI.solicitarChaveAES
-
-"3. Dados sobre os lances do leilão.
-    3.1 Comunicação multicast cifrada utilizando-se a chave simétrica"
+-> Projeto LeilaoClienteMulticast, no form:
+primeiro campo: copie a chave fornecida no console do cliente unicast.
+segundo campo: copie o endereço fornecido no console do cliente unicast.
+terceiro campo: dê um apelido ao seu usuário naquela sessão.
